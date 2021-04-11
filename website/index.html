@@ -1,0 +1,44 @@
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<style type="text/css">
+			button {
+				display: block;
+				margin-left: auto;
+				margin-right: auto;
+			}
+			h2,p {
+				text-align: center;
+			}
+		</style>
+		<script src="nouns.js"></script> 
+		<script src="places.js"></script> 
+		<script>
+			function titleCase(stringo){
+				var toRet = [];
+				splito = stringo.split(" ");
+				for(var i=0;i<splito.length;i++){
+					if("a" <= splito[i][0] && splito[i][0] <= "z"){
+						toRet.push(splito[i][0].toUpperCase()+splito[i].slice(1));
+					}
+					else{
+						toRet.push(splito[i]);
+					}
+				}
+		
+				return toRet.join(" ");
+			}
+
+			function getCombo(){
+				var choosePlace = places[Math.floor(Math.random()*places.length)];
+				var chooseNoun = nouns[Math.floor(Math.random()*nouns.length)];
+				document.getElementById("team").innerHTML = titleCase("The "+choosePlace+" "+chooseNoun);
+			}
+		</script>
+	</head>
+	<body>
+		<h2 id="team">&nbsp;</h2>
+		<button type="button" onclick="getCombo();">Generate Team Name</button>
+		<p>(Warning: these nouns are directly scraped from Wiktionary and therefore questionable or offensive content is possible.)</p>
+	</body>
+</html>
